@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#123B5D">
+<title>Buku Penghubung — UPT SD Negeri 222 Gresik</title>
+<style>
+:root{
+  --navy:#123B5D;
+  --navy-2:#0B2B43;
+  --blue:#2F6F95;
+  --sky:#EAF4F8;
+  --cream:#F8F5EE;
+  --white:#FFFFFF;
+  --ink:#173042;
+  --muted:#6C7C87;
+  --line:#DDE6EB;
+  --green:#3B8065;
+  --gold:#C8953E;
+  --red:#B95C58;
+  --shadow:0 18px 50px rgba(18,59,93,.12);
+  --radius:24px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#DCE9EF}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.app{
+  width:100%;max-width:520px;min-height:100vh;margin:0 auto;background:var(--cream);
+  position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.12)
+}
+.screen{display:none;min-height:100vh;padding-bottom:94px}
+.screen.active{display:block}
+.cover{
+  min-height:100vh;padding:44px 25px 32px;display:flex;flex-direction:column;position:relative;
+  background:linear-gradient(160deg,var(--navy-2),var(--navy) 58%,#2B617F);
+  color:#fff;overflow:hidden
+}
+.cover:before,.cover:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.12);border-radius:50%}
+.cover:before{width:430px;height:430px;right:-230px;top:-150px}
+.cover:after{width:310px;height:310px;left:-200px;bottom:-110px}
+.school-mark{display:flex;align-items:center;gap:13px;position:relative;z-index:2}
+.logo{
+  width:52px;height:52px;border:1px solid rgba(255,255,255,.3);border-radius:16px;
+  display:grid;place-items:center;background:rgba(255,255,255,.09);font-weight:800;letter-spacing:-1px
+}
+.school-name{font-size:12px;line-height:1.45;letter-spacing:.08em;text-transform:uppercase;opacity:.88}
+.cover-main{margin:auto 0;position:relative;z-index:2}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.72;margin-bottom:15px}
+.cover h1{font-family:Georgia,serif;font-weight:500;font-size:47px;line-height:.98;letter-spacing:-.045em;margin:0 0 16px}
+.cover p{font-size:14px;line-height:1.7;color:rgba(255,255,255,.78);max-width:330px;margin:0 0 30px}
+.form-card{background:rgba(255,255,255,.98);color:var(--ink);border-radius:28px;padding:20px;box-shadow:0 22px 50px rgba(0,0,0,.18)}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 7px}
+.field input,.field select,.field textarea{
+  width:100%;border:1px solid var(--line);border-radius:14px;padding:13px 14px;outline:none;background:#FBFCFD;color:var(--ink)
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(47,111,149,.1)}
+.primary{
+  border:0;border-radius:14px;padding:14px 18px;width:100%;background:var(--navy);color:#fff;font-weight:800;
+  letter-spacing:.03em;box-shadow:0 10px 24px rgba(18,59,93,.2)
+}
+.cover-foot{position:relative;z-index:2;margin-top:26px;display:flex;justify-content:space-between;font-size:10px;opacity:.55}
+.topbar{padding:22px 20px 18px;background:var(--navy);color:#fff;border-radius:0 0 28px 28px}
+.topbar-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar h2{font-family:Georgia,serif;font-size:25px;font-weight:500;margin:0}
+.icon-btn{width:40px;height:40px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.09);color:#fff;border-radius:13px}
+.content{padding:18px 18px 20px}
+.student-card{
+  background:var(--white);border:1px solid var(--line);border-radius:24px;padding:18px;box-shadow:var(--shadow);margin-bottom:17px
+}
+.student-line{display:flex;align-items:center;gap:13px}
+.avatar{width:52px;height:52px;border-radius:17px;background:var(--sky);color:var(--navy);display:grid;place-items:center;font-weight:900;font-size:18px}
+.student-meta small{display:block;color:var(--muted);font-size:11px;margin-bottom:3px}
+.student-meta strong{font-size:18px}
+.badge{margin-left:auto;background:#EDF7F1;color:var(--green);border-radius:999px;padding:7px 10px;font-size:10px;font-weight:800}
+.date{font-size:11px;color:var(--muted);margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;align-items:end;margin:19px 2px 10px}
+.section-head h3{margin:0;font-size:14px}
+.section-head span{font-size:11px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.menu{
+  background:#fff;border:1px solid var(--line);border-radius:21px;padding:16px;min-height:126px;text-align:left;
+  box-shadow:0 8px 25px rgba(18,59,93,.06);transition:.15s
+}
+.menu:active{transform:scale(.98)}
+.menu-icon{width:39px;height:39px;border-radius:13px;background:var(--sky);display:grid;place-items:center;font-size:18px;margin-bottom:15px}
+.menu strong{display:block;font-size:13px;margin-bottom:5px}
+.menu small{color:var(--muted);font-size:10px;line-height:1.4}
+.menu.wide{grid-column:1/-1;min-height:auto;display:flex;align-items:center;gap:13px}
+.menu.wide .menu-icon{margin:0}
+.notice{
+  margin-top:16px;background:#FFF8E9;border:1px solid #F0E0B9;border-radius:18px;padding:13px 14px;
+  display:flex;gap:11px;align-items:flex-start
+}
+.notice b{display:block;font-size:12px;margin-bottom:3px}.notice p{margin:0;font-size:10px;color:#756444;line-height:1.5}
+.page-head{display:flex;align-items:center;gap:11px;padding:20px 18px 7px}
+.back{border:0;background:#fff;border:1px solid var(--line);border-radius:12px;width:38px;height:38px;color:var(--navy)}
+.page-head h2{font-family:Georgia,serif;font-weight:500;font-size:24px;margin:0}
+.card{background:#fff;border:1px solid var(--line);border-radius:21px;padding:16px;margin-bottom:12px}
+.card-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.tag{font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:6px 8px;border-radius:999px;background:var(--sky);color:var(--blue)}
+.tag.green{background:#EDF7F1;color:var(--green)}.tag.gold{background:#FFF5DE;color:#8B682E}.tag.red{background:#FBEDEC;color:var(--red)}
+.card h3{font-size:14px;margin:11px 0 7px}.card p{font-size:12px;line-height:1.65;color:#51636F;margin:0}
+.meta{display:flex;gap:10px;flex-wrap:wrap;font-size:9px;color:var(--muted);margin-top:12px}
+.reply{margin-top:13px;padding:12px;border-radius:15px;background:#F7FAFB;border:1px solid var(--line)}
+.reply strong{font-size:10px;display:block;margin-bottom:5px}.reply p{font-size:11px}
+textarea{resize:vertical;min-height:90px}
+.bottom-nav{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);
+  height:76px;background:rgba(255,255,255,.96);backdrop-filter:blur(15px);border-top:1px solid var(--line);
+  display:flex;justify-content:space-around;align-items:center;z-index:20
+}
+.bottom-nav button{border:0;background:transparent;color:var(--muted);font-size:9px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:5px}
+.bottom-nav button span{font-size:18px}.bottom-nav button.active{color:var(--navy)}
+.empty{padding:38px 18px;text-align:center;color:var(--muted)}.empty strong{display:block;color:var(--ink);margin-bottom:6px}
+.toast{
+ position:fixed;z-index:50;left:50%;bottom:88px;transform:translate(-50%,20px);opacity:0;
+ background:var(--navy);color:#fff;padding:11px 15px;border-radius:12px;font-size:11px;transition:.25s;pointer-events:none
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.hidden{display:none!important}
+@media(min-width:700px){.app{min-height:100vh}.cover{min-height:100vh}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- HALAMAN 1 -->
+  <section id="cover" class="screen active">
+    <div class="cover">
+      <div class="school-mark">
+        <div class="logo">SD</div>
+        <div class="school-name">UPT SD Negeri 222 Gresik</div>
+      </div>
+
+      <div class="cover-main">
+        <div class="eyebrow">Media komunikasi sekolah & keluarga</div>
+        <h1>Buku<br>Penghubung</h1>
+        <p>Ruang komunikasi yang sederhana, tertata, dan hangat untuk mendampingi perkembangan setiap peserta didik.</p>
+
+        <div class="form-card">
+          <div class="field">
+            <label>Nama Murid</label>
+            <input id="studentName" type="text" placeholder="Contoh: Budi Santoso" autocomplete="name">
+          </div>
+          <div class="field">
+            <label>Kelas</label>
+            <select id="studentClass">
+              <option value="">Pilih kelas</option>
+              <option>Kelas I</option><option>Kelas II</option><option>Kelas III</option>
+              <option>Kelas IV</option><option>Kelas V</option><option>Kelas VI</option>
+            </select>
+          </div>
+          <button class="primary" onclick="openBook()">BUKA BUKU</button>
+        </div>
+      </div>
+
+      <div class="cover-foot"><span>VERSI PROTOTIPE 01</span><span>2026</span></div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="screen">
+    <div class="topbar">
+      <div class="topbar-row">
+        <div><div style="font-size:10px;opacity:.65;letter-spacing:.1em;text-transform:uppercase">Buku Penghubung</div><h2>Beranda</h2></div>
+        <button class="icon-btn" onclick="goTo('notifications')" aria-label="Notifikasi">🔔</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="student-card">
+        <div class="student-line">
+          <div class="avatar" id="avatar">BS</div>
+          <div class="student-meta"><small>Peserta didik</small><strong id="displayName">Budi Santoso</strong></div>
+          <div class="badge" id="displayClass">Kelas V</div>
+        </div>
+        <div class="date" id="todayText"></div>
+      </div>
+
+      <div class="section-head"><h3>Ruang Buku</h3><span>5 menu utama</span></div>
+      <div class="grid">
+        <button class="menu" onclick="goTo('notes')"><div class="menu-icon">📝</div><strong>Catatan Guru</strong><small>Catatan khusus tentang perkembangan anak.</small></button>
+        <button class="menu" onclick="goTo('tasks')"><div class="menu-icon">📚</div><strong>Tugas Kelas</strong><small>Tugas dan informasi untuk seluruh kelas.</small></button>
+        <button class="menu" onclick="goTo('attendance')"><div class="menu-icon">📅</div><strong>Kehadiran</strong><small>Ringkasan kehadiran peserta didik.</small></button>
+        <button class="menu" onclick="goTo('history')"><div class="menu-icon">📖</div><strong>Riwayat</strong><small>Arsip komunikasi guru dan orang tua.</small></button>
+        <button class="menu wide" onclick="goTo('profile')"><div class="menu-icon">👤</div><div><strong>Profil Siswa</strong><small>Informasi dasar peserta didik.</small></div></button>
+      </div>
+
+      <div class="notice">
+        <div>🔔</div><div><b>2 informasi baru</b><p>1 catatan guru dan 1 tugas kelas menunggu perhatian.</p></div>
+      </div>
+    </div>
+    <nav class="bottom-nav">
+      <button class="active" onclick="goTo('dashboard')"><span>⌂</span>Beranda</button>
+      <button onclick="goTo('notes')"><span>✎</span>Catatan</button>
+      <button onclick="goTo('tasks')"><span>▤</span>Tugas</button>
+      <button onclick="goTo('history')"><span>◷</span>Riwayat</button>
+    </nav>
+  </section>
+
+  <!-- CATATAN -->
+  <section id="notes" class="screen">
+    <div class="page-head"><button class="back" onclick="goTo('dashboard')">←</button><h2>Catatan Guru</h2></div>
+    <div class="content">
+      <div class="card">
+        <div class="card-top"><span class="tag">Akademik</span><span class="tag green">Sudah ditanggapi</span></div>
+        <h3>Perkembangan membaca</h3>
+        <p>Ananda menunjukkan perkembangan yang baik dalam membaca. Namun masih perlu latihan untuk memahami isi bacaan dengan lebih mendalam.</p>
+        <div class="meta"><span>👩‍🏫 Bu Ani</span><span>31 Agustus 2026</span></div>
+        <div class="reply"><strong>💬 Tanggapan Orang Tua</strong><p>Terima kasih informasinya, Bu. Di rumah kami akan memberikan latihan membaca tambahan.</p></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="tag gold">Apresiasi</span><span class="tag">Sudah dibaca</span></div>
+        <h3>Sikap peduli terhadap teman</h3>
+        <p>Hari ini Budi membantu temannya yang mengalami kesulitan mengerjakan tugas. Sikap pedulinya sangat baik.</p>
+        <div class="meta"><span>👩‍🏫 Bu Ani</span><span>28 Agustus 2026</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="tag red">Perhatian</span><span class="tag gold">Menunggu tanggapan</span></div>
+        <h3>Ketepatan waktu</h3>
+        <p>Mohon perhatian mengenai ketepatan waktu kedatangan ke sekolah agar kegiatan belajar dapat diikuti sejak awal.</p>
+        <div class="meta"><span>👩‍🏫 Bu Ani</span><span>25 Agustus 2026</span></div>
+        <button class="primary" style="margin-top:14px" onclick="showReply(this)">BERI TANGGAPAN</button>
+        <div class="reply hidden">
+          <strong>Tanggapan Orang Tua</strong>
+          <textarea placeholder="Tuliskan tanggapan Anda..."></textarea>
+          <button class="primary" style="margin-top:9px" onclick="sendReply(this)">KIRIM TANGGAPAN</button>
+        </div>
+      </div>
+    </div>
+    <nav class="bottom-nav">
+      <button onclick="goTo('dashboard')"><span>⌂</span>Beranda</button>
+      <button class="active" onclick="goTo('notes')"><span>✎</span>Catatan</button>
+      <button onclick="goTo('tasks')"><span>▤</span>Tugas</button>
+      <button onclick="goTo('history')"><span>◷</span>Riwayat</button>
+    </nav>
+  </section>
+
+  <!-- TUGAS -->
+  <section id="tasks" class="screen">
+    <div class="page-head"><button class="back" onclick="goTo('dashboard')">←</button><h2>Tugas Kelas</h2></div>
+    <div class="content">
+      <div class="grid" style="margin-bottom:15px">
+        <button class="menu" style="min-height:auto;padding:13px"><strong>📚 Tugas</strong><small>2 tugas aktif</small></button>
+        <button class="menu" style="min-height:auto;padding:13px"><strong>📢 Pengumuman</strong><small>1 informasi baru</small></button>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="tag">Matematika</span><span class="tag red">2 Sep</span></div>
+        <h3>Latihan perkalian</h3>
+        <p>Kerjakan latihan halaman 45 nomor 1–10 di buku tugas.</p>
+        <div class="meta"><span>👩‍🏫 Bu Ani</span><span>31 Agustus 2026</span></div>
+        <div class="reply"><strong>Status Tugas</strong><p id="taskStatus">Belum dikonfirmasi oleh orang tua.</p><button class="primary" style="margin-top:9px" onclick="confirmTask()">☑ SUDAH DIKERJAKAN</button></div>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="tag">Bahasa Indonesia</span><span class="tag gold">4 Sep</span></div>
+        <h3>Ringkasan bacaan</h3>
+        <p>Baca teks pada halaman 72 kemudian tuliskan ringkasannya dalam 5–7 kalimat.</p>
+        <div class="meta"><span>👩‍🏫 Bu Ani</span><span>30 Agustus 2026</span></div>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="tag green">Pengumuman</span></div>
+        <h3>Perlengkapan PJOK</h3>
+        <p>Besok pembelajaran PJOK dilaksanakan di lapangan. Siswa membawa perlengkapan olahraga.</p>
+        <div class="meta"><span>👩‍🏫 Bu Ani</span><span>31 Agustus 2026</span></div>
+      </div>
+    </div>
+    <nav class="bottom-nav">
+      <button onclick="goTo('dashboard')"><span>⌂</span>Beranda</button>
+      <button onclick="goTo('notes')"><span>✎</span>Catatan</button>
+      <button class="active" onclick="goTo('tasks')"><span>▤</span>Tugas</button>
+      <button onclick="goTo('history')"><span>◷</span>Riwayat</button>
+    </nav>
+  </section>
+
+  <!-- KEHADIRAN -->
+  <section id="attendance" class="screen">
+    <div class="page-head"><button class="back" onclick="goTo('dashboard')">←</button><h2>Kehadiran</h2></div>
+    <div class="content">
+      <div class="card">
+        <div class="section-head" style="margin-top:0"><h3>Agustus 2026</h3><span>20 hari efektif</span></div>
+        <div class="grid">
+          <div class="card" style="margin:0;background:#F7FAFB"><span style="font-size:10px;color:var(--muted)">Hadir</span><strong style="display:block;font-size:25px;margin-top:5px">18</strong></div>
+          <div class="card" style="margin:0;background:#F7FAFB"><span style="font-size:10px;color:var(--muted)">Sakit</span><strong style="display:block;font-size:25px;margin-top:5px">1</strong></div>
+          <div class="card" style="margin:0;background:#F7FAFB"><span style="font-size:10px;color:var(--muted)">Izin</span><strong style="display:block;font-size:25px;margin-top:5px">1</strong></div>
+          <div class="card" style="margin:0;background:#F7FAFB"><span style="font-size:10px;color:var(--muted)">Alpa</span><strong style="display:block;font-size:25px;margin-top:5px">0</strong></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Riwayat terbaru</h3>
+        <div class="meta" style="justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:10px"><span>31 Agustus</span><strong>✓ Hadir</strong></div>
+        <div class="meta" style="justify-content:space-between;border-bottom:1px solid var(--line);padding:10px 0"><span>28 Agustus</span><strong>✓ Hadir</strong></div>
+        <div class="meta" style="justify-content:space-between;padding-top:10px"><span>27 Agustus</span><strong>✓ Hadir</strong></div>
+      </div>
+    </div>
+    <nav class="bottom-nav"><button onclick="goTo('dashboard')"><span>⌂</span>Beranda</button><button onclick="goTo('notes')"><span>✎</span>Catatan</button><button onclick="goTo('tasks')"><span>▤</span>Tugas</button><button onclick="goTo('history')"><span>◷</span>Riwayat</button></nav>
+  </section>
+
+  <!-- RIWAYAT -->
+  <section id="history" class="screen">
+    <div class="page-head"><button class="back" onclick="goTo('dashboard')">←</button><h2>Riwayat</h2></div>
+    <div class="content">
+      <div class="card"><div class="card-top"><span class="tag">31 Agustus</span><span class="tag green">Ditanggapi</span></div><h3>Perkembangan membaca</h3><p>Catatan guru tentang perkembangan membaca dan tanggapan orang tua.</p></div>
+      <div class="card"><div class="card-top"><span class="tag gold">28 Agustus</span></div><h3>Sikap peduli terhadap teman</h3><p>Guru memberikan apresiasi atas sikap peduli siswa.</p></div>
+      <div class="card"><div class="card-top"><span class="tag red">25 Agustus</span></div><h3>Ketepatan waktu</h3><p>Catatan perhatian mengenai kedisiplinan kedatangan ke sekolah.</p></div>
+      <div class="card"><div class="card-top"><span class="tag">22 Agustus</span></div><h3>Tugas Matematika</h3><p>Informasi tugas kelas dan batas pengumpulan.</p></div>
+    </div>
+    <nav class="bottom-nav"><button onclick="goTo('dashboard')"><span>⌂</span>Beranda</button><button onclick="goTo('notes')"><span>✎</span>Catatan</button><button onclick="goTo('tasks')"><span>▤</span>Tugas</button><button class="active" onclick="goTo('history')"><span>◷</span>Riwayat</button></nav>
+  </section>
+
+  <!-- PROFIL -->
+  <section id="profile" class="screen">
+    <div class="page-head"><button class="back" onclick="goTo('dashboard')">←</button><h2>Profil Siswa</h2></div>
+    <div class="content">
+      <div class="student-card" style="text-align:center">
+        <div class="avatar" id="profileAvatar" style="margin:0 auto 12px">BS</div>
+        <strong id="profileName" style="font-size:19px">Budi Santoso</strong>
+        <div id="profileClass" style="font-size:11px;color:var(--muted);margin-top:5px">Kelas V</div>
+      </div>
+      <div class="card">
+        <h3>Informasi Siswa</h3>
+        <div class="meta" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div><span style="display:block">NISN</span><strong style="color:var(--ink)">—</strong></div>
+          <div><span style="display:block">Kelas</span><strong style="color:var(--ink)" id="profileClass2">Kelas V</strong></div>
+          <div><span style="display:block">Wali Kelas</span><strong style="color:var(--ink)">Bu Ani</strong></div>
+          <div><span style="display:block">Tahun Pelajaran</span><strong style="color:var(--ink)">2026/2027</strong></div>
+        </div>
+      </div>
+    </div>
+    <nav class="bottom-nav"><button onclick="goTo('dashboard')"><span>⌂</span>Beranda</button><button onclick="goTo('notes')"><span>✎</span>Catatan</button><button onclick="goTo('tasks')"><span>▤</span>Tugas</button><button onclick="goTo('history')"><span>◷</span>Riwayat</button></nav>
+  </section>
+
+  <!-- NOTIFIKASI -->
+  <section id="notifications" class="screen">
+    <div class="page-head"><button class="back" onclick="goTo('dashboard')">←</button><h2>Notifikasi</h2></div>
+    <div class="content">
+      <div class="card"><div class="card-top"><span class="tag red">Baru</span><span class="meta">11:05</span></div><h3>📝 Catatan guru baru</h3><p>Bu Ani memberikan catatan mengenai perkembangan membaca.</p></div>
+      <div class="card"><div class="card-top"><span class="tag red">Baru</span><span class="meta">09:10</span></div><h3>📚 Tugas kelas baru</h3><p>Latihan perkalian harus dikumpulkan pada 2 September 2026.</p></div>
+    </div>
+    <nav class="bottom-nav"><button class="active" onclick="goTo('dashboard')"><span>⌂</span>Beranda</button><button onclick="goTo('notes')"><span>✎</span>Catatan</button><button onclick="goTo('tasks')"><span>▤</span>Tugas</button><button onclick="goTo('history')"><span>◷</span>Riwayat</button></nav>
+  </section>
+
+  <div id="toast" class="toast"></div>
+</div>
+
+<script>
+const state={name:"Budi Santoso",klass:"Kelas V"};
+
+function openBook(){
+  const name=document.getElementById('studentName').value.trim();
+  const klass=document.getElementById('studentClass').value;
+  if(!name || !klass){showToast('Silakan isi nama murid dan pilih kelas.');return}
+  state.name=name; state.klass=klass;
+  document.getElementById('displayName').textContent=name;
+  document.getElementById('displayClass').textContent=klass;
+  document.getElementById('profileName').textContent=name;
+  document.getElementById('profileClass').textContent=klass;
+  document.getElementById('profileClass2').textContent=klass;
+  const initials=name.split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase();
+  document.getElementById('avatar').textContent=initials;
+  document.getElementById('profileAvatar').textContent=initials;
+  document.getElementById('todayText').textContent=new Intl.DateTimeFormat('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date());
+  goTo('dashboard');
+}
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const target=document.getElementById(id); if(target) target.classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function showReply(btn){
+  btn.classList.add('hidden');
+  btn.nextElementSibling.classList.remove('hidden');
+}
+function sendReply(btn){
+  const box=btn.parentElement, text=box.querySelector('textarea').value.trim();
+  if(!text){showToast('Tulis tanggapan terlebih dahulu.');return}
+  box.innerHTML='<strong>💬 Tanggapan Orang Tua</strong><p>'+escapeHtml(text)+'</p>';
+  showToast('Tanggapan berhasil disimpan (demo).');
+}
+function confirmTask(){
+  document.getElementById('taskStatus').textContent='Sudah dikonfirmasi sebagai tugas yang dikerjakan.';
+  showToast('Status tugas diperbarui (demo).');
+}
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),2500);
+}
+function escapeHtml(str){
+  return str.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+}
+document.getElementById('todayText').textContent=new Intl.DateTimeFormat('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date());
+</script>
+</body>
+</html>
