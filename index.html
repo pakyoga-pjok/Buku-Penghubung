@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#123B5D">
+<title>Buku Penghubung V2 — UPT SD Negeri 222 Gresik</title>
+<style>
+:root{--navy:#123B5D;--navy2:#0B2B43;--blue:#2F6F95;--sky:#EAF4F8;--cream:#F8F5EE;--white:#fff;--ink:#173042;--muted:#6C7C87;--line:#DDE6EB;--green:#3B8065;--gold:#C8953E;--red:#B95C58;--shadow:0 18px 50px rgba(18,59,93,.12);--r:23px}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#DCE9EF}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.app{max-width:540px;min-height:100vh;margin:auto;background:var(--cream);position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.12)}
+.screen{display:none;min-height:100vh;padding-bottom:92px}.screen.active{display:block}
+.cover{min-height:100vh;padding:36px 23px 28px;display:flex;flex-direction:column;background:linear-gradient(160deg,var(--navy2),var(--navy) 60%,#2B617F);color:#fff;position:relative;overflow:hidden}
+.cover:before,.cover:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.12);border-radius:50%}.cover:before{width:450px;height:450px;right:-250px;top:-160px}.cover:after{width:320px;height:320px;left:-220px;bottom:-120px}
+.brand{display:flex;gap:12px;align-items:center;position:relative;z-index:1}.logo{width:50px;height:50px;border:1px solid rgba(255,255,255,.3);border-radius:15px;display:grid;place-items:center;font-weight:900;background:rgba(255,255,255,.08)}.brand small{font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+.cover-main{margin:auto 0;position:relative;z-index:1}.eyebrow{font-size:11px;letter-spacing:.17em;text-transform:uppercase;opacity:.7;margin-bottom:12px}.cover h1{font:500 45px/1 Georgia,serif;letter-spacing:-.04em;margin:0 0 14px}.cover p{font-size:13px;line-height:1.7;color:rgba(255,255,255,.76);margin:0 0 25px;max-width:350px}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}.choice button{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.09);color:#fff;border-radius:18px;padding:16px 12px;text-align:left}.choice button.active{background:#fff;color:var(--navy);border-color:#fff}.choice b{display:block;font-size:13px;margin-top:7px}.choice span{font-size:22px}
+.form{background:rgba(255,255,255,.98);color:var(--ink);border-radius:25px;padding:18px;box-shadow:0 22px 50px rgba(0,0,0,.18)}.field{margin-bottom:12px}.field label{display:block;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px 13px;outline:none;background:#FBFCFD;color:var(--ink)}.field textarea{min-height:100px;resize:vertical}.primary{width:100%;border:0;border-radius:13px;padding:13px 16px;background:var(--navy);color:#fff;font-weight:850}.secondary{border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:12px;padding:10px 12px;font-weight:800}.hint{font-size:9px;color:#77858e;margin-top:9px;line-height:1.5}.cover-foot{position:relative;z-index:1;display:flex;justify-content:space-between;font-size:9px;opacity:.48;margin-top:22px}
+.top{padding:20px 18px 17px;background:var(--navy);color:#fff;border-radius:0 0 27px 27px}.toprow{display:flex;justify-content:space-between;align-items:center;gap:10px}.top small{font-size:9px;opacity:.62;letter-spacing:.1em;text-transform:uppercase}.top h2{font:500 25px Georgia,serif;margin:2px 0 0}.top-actions{display:flex;gap:7px}.icon{width:39px;height:39px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;border-radius:12px}
+.content{padding:17px 17px 20px}.student-card,.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:0 8px 28px rgba(18,59,93,.055);margin-bottom:12px}.student-line{display:flex;align-items:center;gap:12px}.avatar{width:51px;height:51px;border-radius:16px;background:var(--sky);color:var(--navy);display:grid;place-items:center;font-weight:900}.student-meta small{display:block;color:var(--muted);font-size:10px}.student-meta strong{display:block;font-size:17px;margin-top:2px}.pill{margin-left:auto;border-radius:999px;padding:6px 9px;background:#EDF7F1;color:var(--green);font-size:9px;font-weight:900}.date{font-size:10px;color:var(--muted);border-top:1px solid var(--line);margin-top:12px;padding-top:10px}.section{display:flex;justify-content:space-between;align-items:center;margin:18px 2px 10px}.section h3{font-size:13px;margin:0}.section span{font-size:9px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.menu{background:#fff;border:1px solid var(--line);border-radius:19px;padding:15px;min-height:118px;text-align:left}.menu .mi{width:38px;height:38px;border-radius:12px;background:var(--sky);display:grid;place-items:center;font-size:17px;margin-bottom:13px}.menu strong{display:block;font-size:12px;margin-bottom:4px}.menu small{display:block;font-size:9px;color:var(--muted);line-height:1.4}.wide{grid-column:1/-1;min-height:65px;display:flex;align-items:center;gap:12px}.wide .mi{margin:0}
+.alert{background:#FFF8E9;border:1px solid #F0E0B9;border-radius:17px;padding:12px 13px;display:flex;gap:10px;font-size:10px;margin-top:14px}.alert b{display:block;margin-bottom:2px}.alert p{margin:0;color:#756444;line-height:1.45}
+.page{display:flex;gap:10px;align-items:center;padding:18px 17px 7px}.back{width:38px;height:38px;border:1px solid var(--line);background:#fff;border-radius:12px;color:var(--navy);font-size:17px}.page h2{font:500 24px Georgia,serif;margin:0}.tag{display:inline-block;padding:6px 8px;border-radius:999px;background:var(--sky);color:var(--blue);font-size:8px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}.tag.green{background:#EDF7F1;color:var(--green)}.tag.gold{background:#FFF5DE;color:#8B682E}.tag.red{background:#FBEDEC;color:var(--red)}
+.card-head{display:flex;justify-content:space-between;gap:7px}.card h3{font-size:14px;margin:10px 0 6px}.card p{font-size:11px;color:#52646f;line-height:1.65;margin:0}.meta{display:flex;flex-wrap:wrap;gap:9px;font-size:8px;color:var(--muted);margin-top:11px}.reply{background:#F7FAFB;border:1px solid var(--line);border-radius:14px;padding:11px;margin-top:11px}.reply strong{font-size:9px;display:block;margin-bottom:5px}.reply p{font-size:10px}.reply textarea{width:100%;min-height:82px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:10px 11px;background:#fff;outline:none;font-size:10px}.reply .secondary{margin-top:8px;width:100%}.hidden{display:none!important}
+.teacher-stat{display:grid;grid-template-columns:1fr 1fr;gap:9px}.stat{background:#F7FAFB;border:1px solid var(--line);border-radius:17px;padding:13px}.stat small{display:block;font-size:9px;color:var(--muted)}.stat strong{display:block;font-size:22px;margin-top:4px}
+.search{position:relative;margin-bottom:10px}.search input{width:100%;padding:12px 13px 12px 38px;border:1px solid var(--line);border-radius:14px;background:#fff;outline:none}.search span{position:absolute;left:13px;top:11px;color:var(--muted)}
+.student-row{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:15px;padding:11px;margin-bottom:7px}.student-row .mini{width:36px;height:36px;border-radius:11px;background:var(--sky);display:grid;place-items:center;font-size:11px;font-weight:900}.student-row strong{font-size:11px}.student-row small{display:block;font-size:8px;color:var(--muted);margin-top:2px}.student-row button{margin-left:auto;border:0;background:var(--sky);color:var(--navy);border-radius:10px;padding:8px;font-size:10px;font-weight:800}
+.selectline{display:grid;grid-template-columns:1fr 1fr;gap:8px}.notice-item{border-left:3px solid var(--blue);padding:10px 11px;background:#F7FAFB;border-radius:0 13px 13px 0;margin-bottom:8px}.notice-item strong{font-size:11px}.notice-item p{font-size:9px;margin:4px 0 0;color:var(--muted)}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(540px,100%);height:74px;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;z-index:30}.bottom button{border:0;background:none;color:var(--muted);font-size:8px;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:4px}.bottom button span{font-size:17px}.bottom button.active{color:var(--navy)}
+.toast{position:fixed;z-index:100;left:50%;bottom:86px;transform:translate(-50%,20px);opacity:0;background:var(--navy);color:#fff;padding:10px 14px;border-radius:12px;font-size:10px;transition:.25s;pointer-events:none;max-width:90%;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
+.modal{position:fixed;inset:0;background:rgba(8,28,42,.55);z-index:80;display:none;align-items:flex-end;justify-content:center}.modal.show{display:flex}.sheet{width:min(540px,100%);background:var(--cream);border-radius:25px 25px 0 0;padding:17px;max-height:88vh;overflow:auto}.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.sheet-head h3{margin:0;font:500 21px Georgia,serif}.close{border:0;background:#fff;border:1px solid var(--line);width:35px;height:35px;border-radius:11px}
+.badge-new{background:var(--red);color:#fff;border-radius:999px;padding:3px 6px;font-size:7px;margin-left:4px}.danger{background:#FBEDEC;color:var(--red);border:1px solid #F0CECC;border-radius:12px;padding:10px;font-size:9px;line-height:1.5;margin-top:10px}
+@media(min-width:700px){.app{min-height:100vh}}
+
+.table-wrap{overflow-x:auto}.recap-table{width:100%;border-collapse:collapse;font-size:10px}.recap-table th,.recap-table td{border:1px solid var(--line);padding:8px 7px;text-align:left;vertical-align:top}.recap-table th{text-transform:uppercase;font-size:8px;background:#f5f7fa}.recap-table th:nth-child(n+3),.recap-table td:nth-child(n+3){text-align:center}.daily-table td:nth-child(2){white-space:nowrap}.recap-actions{display:flex;gap:8px;margin-top:12px}.recap-actions button{flex:1}.secondary{background:#fff;color:var(--navy);border:1px solid var(--navy);border-radius:12px;padding:11px 14px;font-weight:800;cursor:pointer}.hidden{display:none!important}@media print{body *{visibility:hidden!important}.screen.active,.screen.active *{visibility:visible!important}.screen.active{position:absolute;left:0;top:0;width:100%;padding:10px}.screen.active .page,.screen.active .card:first-child,.screen.active .recap-actions,.screen.active #attendanceInputPanel{display:none!important}.recap-table{font-size:9px}.recap-table th,.recap-table td{padding:5px}.card{box-shadow:none;border:0}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<section id="login" class="screen active">
+  <div class="cover">
+    <div class="brand"><div class="logo">SD</div><small>UPT SD Negeri 222 Gresik</small></div>
+    <div class="cover-main">
+      <div class="eyebrow">Media komunikasi sekolah & keluarga</div>
+      <h1>Buku<br>Penghubung</h1>
+      <p>Satu pintu untuk guru dan murid dalam membangun komunikasi yang tertata tentang perkembangan peserta didik.</p>
+      <div class="choice">
+        <button id="teacherChoice" class="active" onclick="setRole('teacher')"><span>👨‍🏫</span><b>GURU</b></button>
+        <button id="parentChoice" onclick="setRole('parent')"><span>👨‍👩‍👧</span><b>MURID</b></button>
+      </div>
+      <div class="form">
+        <div class="field" id="teacherCodeField"><label id="identityLabel">Kode Guru</label><input id="teacherCode" type="text" inputmode="text" autocomplete="off" maxlength="20" placeholder="Contoh: A"></div>
+         <div class="field"><label id="pinLabel">PIN Guru</label><input id="loginPin" type="password" inputmode="text" autocomplete="off" placeholder="Masukkan PIN"></div>
+        <button class="primary" onclick="login()">MASUK</button>
+        <div class="hint" id="loginHint">Prototype V2: PIN mengikuti data yang diberikan sekolah. Pada versi produksi, PIN harus dipindahkan ke backend aman.</div>
+      </div>
+    </div>
+    <div class="cover-foot"><span>BUKU PENGHUBUNG V2</span><span>2026/2027</span></div>
+  </div>
+</section>
+
+<section id="parentHome" class="screen">
+  <div class="top"><div class="toprow"><div><small>Buku Anak</small><h2 id="pTitle">Beranda</h2></div><div class="top-actions"><button class="icon" onclick="openModal('notifications')">🔔</button><button class="icon" onclick="logout()">↪</button></div></div></div>
+  <div class="content">
+    <div class="student-card"><div class="student-line"><div class="avatar" id="pAvatar">AS</div><div class="student-meta"><small>Peserta didik</small><strong id="pName">-</strong></div><div class="pill" id="pClass">-</div></div><div class="date" id="pDate"></div></div>
+    <div class="section"><h3>Ruang Buku</h3><span>Untuk murid</span></div>
+    <div class="grid">
+      <button class="menu" onclick="show('parentNotes')"><div class="mi">📝</div><strong>Catatan Guru</strong><small>Catatan khusus dan tanggapan Anda.</small></button>
+      <button class="menu" onclick="show('parentTasks')"><div class="mi">📚</div><strong>Tugas Kelas</strong><small>Tugas dan pengumuman kelas.</small></button>
+      <button class="menu" onclick="show('parentAttendance')"><div class="mi">📅</div><strong>Kehadiran</strong><small>Ringkasan kehadiran siswa.</small></button>
+      <button class="menu" onclick="show('parentHistory')"><div class="mi">📖</div><strong>Riwayat</strong><small>Arsip komunikasi.</small></button>
+      <button class="menu wide" onclick="show('profile')"><div class="mi">👤</div><div><strong>Profil Siswa</strong><small>Informasi dasar peserta didik.</small></div></button>
+    </div>
+    <div class="alert">🔔 <div><b>Informasi baru</b><p>Prototype menampilkan contoh catatan dan tugas. Data nyata akan tersimpan setelah backend dihubungkan.</p></div></div>
+  </div>
+  <nav class="bottom"><button class="active" onclick="show('parentHome')"><span>⌂</span>Beranda</button><button onclick="show('parentNotes')"><span>✎</span>Catatan</button><button onclick="show('parentTasks')"><span>▤</span>Tugas</button><button onclick="show('parentHistory')"><span>◷</span>Riwayat</button></nav>
+</section>
+
+<section id="parentNotes" class="screen">
+  <div class="page"><button class="back" onclick="show('parentHome')">←</button><h2>Catatan Guru</h2></div>
+  <div class="content" id="parentNotesContent"></div>
+  <nav class="bottom"><button onclick="show('parentHome')"><span>⌂</span>Beranda</button><button class="active" onclick="show('parentNotes')"><span>✎</span>Catatan</button><button onclick="show('parentTasks')"><span>▤</span>Tugas</button><button onclick="show('parentHistory')"><span>◷</span>Riwayat</button></nav>
+</section>
+
+<section id="parentTasks" class="screen">
+  <div class="page"><button class="back" onclick="show('parentHome')">←</button><h2>Tugas Kelas</h2></div>
+  <div class="content">
+    <div class="card"><div class="card-head"><span class="tag">Matematika</span><span class="tag red">2 Sep</span></div><h3>Latihan perkalian</h3><p>Kerjakan latihan halaman 45 nomor 1–10 di buku tugas.</p><div class="meta"><span>👩‍🏫 Wali Kelas</span><span>31 Agustus 2026</span></div><div class="reply"><strong>Status Tugas</strong><p id="taskStatus">Belum dikonfirmasi.</p><button class="primary" onclick="confirmTask()">☑ SUDAH DIKERJAKAN</button></div></div>
+    <div class="card"><div class="card-head"><span class="tag">Bahasa Indonesia</span><span class="tag gold">4 Sep</span></div><h3>Ringkasan bacaan</h3><p>Baca teks halaman 72 dan tuliskan ringkasannya dalam 5–7 kalimat.</p><div class="meta"><span>👩‍🏫 Wali Kelas</span><span>30 Agustus 2026</span></div></div>
+    <div class="card"><div class="card-head"><span class="tag green">Pengumuman</span></div><h3>Perlengkapan PJOK</h3><p>Besok pembelajaran PJOK dilaksanakan di lapangan. Siswa membawa perlengkapan olahraga.</p><div class="meta"><span>31 Agustus 2026</span></div></div>
+  </div>
+  <nav class="bottom"><button onclick="show('parentHome')"><span>⌂</span>Beranda</button><button onclick="show('parentNotes')"><span>✎</span>Catatan</button><button class="active" onclick="show('parentTasks')"><span>▤</span>Tugas</button><button onclick="show('parentHistory')"><span>◷</span>Riwayat</button></nav>
+</section>
+
+<section id="parentAttendance" class="screen">
+  <div class="page"><button class="back" onclick="show('parentHome')">←</button><h2>Kehadiran</h2></div>
+  <div class="content" id="parentAttendanceContent"><div class="card"><p>Memuat kehadiran dari database...</p></div></div>
+  <nav class="bottom"><button onclick="show('parentHome')"><span>⌂</span>Beranda</button><button onclick="show('parentNotes')"><span>✎</span>Catatan</button><button onclick="show('parentTasks')"><span>▤</span>Tugas</button><button onclick="show('parentHistory')"><span>◷</span>Riwayat</button></nav>
+</section>
+
+<section id="parentHistory" class="screen">
+  <div class="page"><button class="back" onclick="show('parentHome')">←</button><h2>Riwayat</h2></div>
+  <div class="content"><div class="card"><div class="card-head"><span class="tag">31 Agustus</span><span class="tag green">Ditanggapi</span></div><h3>Perkembangan membaca</h3><p>Catatan guru dan tanggapan orang tua.</p></div><div class="card"><div class="card-head"><span class="tag gold">28 Agustus</span></div><h3>Apresiasi sikap</h3><p>Guru memberikan apresiasi atas sikap peduli siswa.</p></div><div class="card"><div class="card-head"><span class="tag red">25 Agustus</span></div><h3>Ketepatan waktu</h3><p>Catatan perhatian mengenai kedisiplinan.</p></div></div>
+  <nav class="bottom"><button onclick="show('parentHome')"><span>⌂</span>Beranda</button><button onclick="show('parentNotes')"><span>✎</span>Catatan</button><button onclick="show('parentTasks')"><span>▤</span>Tugas</button><button class="active" onclick="show('parentHistory')"><span>◷</span>Riwayat</button></nav>
+</section>
+
+<section id="profile" class="screen">
+  <div class="page"><button class="back" onclick="show('parentHome')">←</button><h2>Profil Siswa</h2></div>
+  <div class="content"><div class="student-card" style="text-align:center"><div class="avatar" id="profileAvatar" style="margin:auto auto 10px">AS</div><strong id="profileName" style="font-size:18px">-</strong><div id="profileClass" style="font-size:10px;color:var(--muted);margin-top:4px">-</div></div><div class="card"><h3>Informasi</h3><div class="meta" style="display:grid;grid-template-columns:1fr 1fr;gap:13px"><div><span>Nomor</span><strong id="profileId">-</strong></div><div><span>Kelas</span><strong id="profileClass2">-</strong></div><div><span>Wali Kelas</span><strong id="profileTeacher">-</strong></div><div><span>Tahun Pelajaran</span><strong>2026/2027</strong></div></div></div></div>
+  <nav class="bottom"><button onclick="show('parentHome')"><span>⌂</span>Beranda</button><button onclick="show('parentNotes')"><span>✎</span>Catatan</button><button onclick="show('parentTasks')"><span>▤</span>Tugas</button><button onclick="show('parentHistory')"><span>◷</span>Riwayat</button></nav>
+</section>
+
+<!-- TEACHER DASHBOARD -->
+<section id="teacherHome" class="screen">
+  <div class="top"><div class="toprow"><div><small>Ruang Guru</small><h2 id="tTitle">Dashboard</h2></div><div class="top-actions"><button class="icon" onclick="openModal('teacherInfo')">ℹ</button><button class="icon" onclick="logout()">↪</button></div></div></div>
+  <div class="content">
+    <div class="student-card"><div class="student-line"><div class="avatar" id="tAvatar">TN</div><div class="student-meta"><small>Guru</small><strong id="tName">-</strong></div><div class="pill" id="tRole">Guru</div></div><div class="date" id="tScope"></div></div>
+    <div class="teacher-stat"><div class="stat"><small>Daftar siswa</small><strong id="tStudentCount">0</strong></div><div class="stat"><small>Catatan baru</small><strong>3</strong></div></div>
+    <div class="section"><h3>Kelola Buku</h3><span>Ruang Guru</span></div>
+    <div class="grid">
+      <button class="menu" onclick="show('teacherStudents')"><div class="mi">👥</div><strong>Daftar Siswa</strong><small>Pilih siswa untuk membuat catatan.</small></button>
+      <button class="menu" onclick="show('teacherNotes')"><div class="mi">📝</div><strong>Catatan Siswa</strong><small>Buat dan kelola komunikasi.</small></button>
+      <button class="menu" onclick="show('teacherAttendance')"><div class="mi">📅</div><strong>Kehadiran</strong><small>Catat kehadiran siswa per kelas.</small></button>
+      <button class="menu" onclick="show('teacherTasks')"><div class="mi">📚</div><strong>Tugas Kelas</strong><small>Terbitkan tugas untuk kelas.</small></button>
+      <button class="menu" onclick="show('teacherAnnouncements')"><div class="mi">📢</div><strong>Pengumuman</strong><small>Informasi umum untuk kelas.</small></button>
+      <button class="menu wide" onclick="show('teacherMonitor')"><div class="mi">📊</div><div><strong>Monitoring</strong><small>Lihat status komunikasi dan respons orang tua.</small></div></button>
+    </div>
+    <div class="alert">🔐 <div><b>Hak akses aktif</b><p id="tAccessText">Guru dapat mengelola catatan dan informasi kelas.</p></div></div>
+    <div id="teacherDataStatus" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<section id="teacherStudents" class="screen">
+  <div class="page"><button class="back" onclick="show('teacherHome')">←</button><h2>Daftar Siswa</h2></div>
+  <div class="content"><div id="teacherDataStatusStudents"></div><div class="selectline"><div class="field"><label>Kelas</label><select id="teacherClassFilter" onchange="renderStudents()"></select></div><div class="field"><label>Cari</label><input id="studentSearch" oninput="renderStudents()" placeholder="Nama..."></div></div><div id="studentList"></div></div>
+</section>
+
+<section id="teacherNotes" class="screen">
+  <div class="page"><button class="back" onclick="show('teacherHome')">←</button><h2>Catatan Siswa</h2></div>
+  <div class="content"><button class="primary" onclick="openModal('newNote')">＋ BUAT CATATAN SISWA</button><div style="height:12px"></div><div id="teacherNoteList"><div class="card"><p>Belum ada catatan tersimpan.</p></div></div></div>
+</section>
+
+<section id="teacherAttendance" class="screen">
+  <div class="page"><button class="back" onclick="show('teacherHome')">←</button><h2>Kehadiran</h2></div>
+  <div class="content">
+    <div class="card">
+      <div class="selectline">
+        <div class="field"><label>Mode</label><select id="attendanceMode" onchange="toggleAttendanceMode()"><option value="input">Catat Kehadiran</option><option value="recap">Rekap Kehadiran</option></select></div>
+        <div class="field" id="attendanceInputClassWrap"><label>Kelas</label><select id="attendanceClass" onchange="loadAttendanceForDate()"></select></div>
+        <div class="field" id="attendanceInputDateWrap"><label>Tanggal</label><input id="attendanceDate" type="date" onchange="loadAttendanceForDate()"></div>
+      </div>
+      <div id="attendanceInputSummary" class="meta"><span>Hadir • Sakit • Izin • Alpa</span><span id="attendanceSummary">Belum dimuat</span></div>
+    </div>
+    <div id="attendanceInputPanel">
+      <div id="attendanceList"></div>
+      <button id="saveAttendanceBtn" class="primary" onclick="saveAttendance()">SIMPAN KEHADIRAN</button>
+    </div>
+    <div id="attendanceRecapPanel" class="hidden">
+      <div class="card">
+        <div class="selectline">
+          <div class="field"><label>Kelas</label><select id="recapClass"></select></div>
+          <div class="field"><label>Periode</label><select id="recapPeriod" onchange="applyRecapPeriod()"><option value="month">Bulan Ini</option><option value="semester1">Semester 1</option><option value="semester2">Semester 2</option><option value="year">1 Tahun Pelajaran</option><option value="custom">Rentang Tanggal</option></select></div>
+        </div>
+        <div class="selectline" id="recapCustomDates" style="display:none">
+          <div class="field"><label>Mulai</label><input id="recapStart" type="date"></div>
+          <div class="field"><label>Sampai</label><input id="recapEnd" type="date"></div>
+        </div>
+        <div class="section" style="margin-top:10px"><span id="recapPeriodLabel">Periode belum dipilih</span><button class="secondary" type="button" onclick="loadAttendanceRecap()">TAMPILKAN REKAP</button></div>
+      </div>
+      <div id="recapSummary" class="teacher-stat"></div>
+      <div class="card">
+        <div class="section" style="margin-top:0"><h3>Rekap per Siswa</h3><span id="recapCount"></span></div>
+        <div class="table-wrap"><table class="recap-table"><thead><tr><th>No</th><th>Siswa</th><th>Hadir</th><th>Sakit</th><th>Izin</th><th>Alpa</th><th>Total</th></tr></thead><tbody id="recapBody"><tr><td colspan="7">Pilih kelas dan periode.</td></tr></tbody></table></div>
+      </div>
+      <div class="card">
+        <div class="section" style="margin-top:0"><h3>Rincian Harian</h3><span id="dailyCount"></span></div>
+        <div class="table-wrap"><table class="recap-table daily-table"><thead><tr><th>No</th><th>Tanggal</th><th>Siswa</th><th>Status</th><th>Keterangan</th></tr></thead><tbody id="dailyBody"><tr><td colspan="5">Belum dimuat.</td></tr></tbody></table></div>
+      </div>
+      <div class="recap-actions"><button class="primary" type="button" onclick="printAttendanceRecap()">CETAK REKAP</button><button class="secondary" type="button" onclick="downloadAttendanceExcel()">DOWNLOAD EXCEL</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="teacherTasks" class="screen">
+  <div class="page"><button class="back" onclick="show('teacherHome')">←</button><h2>Tugas Kelas</h2></div>
+  <div class="content"><button class="primary" onclick="openModal('newTask')">＋ BUAT TUGAS / PENGUMUMAN</button><div style="height:12px"></div><div id="teacherTaskList"><div class="card"><div class="card-head"><span class="tag">Matematika</span><span class="tag red">2 Sep</span></div><h3>Latihan perkalian</h3><p>Kerjakan latihan halaman 45 nomor 1–10.</p></div></div></div>
+</section>
+
+<section id="teacherAnnouncements" class="screen">
+  <div class="page"><button class="back" onclick="show('teacherHome')">←</button><h2>Pengumuman</h2></div>
+  <div class="content"><button class="primary" onclick="openModal('newAnnouncement')">＋ BUAT PENGUMUMAN</button><div style="height:12px"></div><div class="card"><span class="tag green">Contoh</span><h3>Perlengkapan PJOK</h3><p>Besok siswa membawa perlengkapan olahraga.</p></div></div>
+</section>
+
+<section id="teacherMonitor" class="screen">
+  <div class="page"><button class="back" onclick="show('teacherHome')">←</button><h2>Monitoring</h2></div>
+  <div class="content"><div class="card"><div class="section" style="margin-top:0"><h3>Status komunikasi</h3><span>Contoh</span></div><div class="notice-item"><strong>🟢 18 sudah ditanggapi</strong><p>Orang tua telah memberikan respon.</p></div><div class="notice-item"><strong>🔵 7 sudah dibaca</strong><p>Belum ada tanggapan.</p></div><div class="notice-item"><strong>🟡 3 belum dibaca</strong><p>Perlu perhatian lebih lanjut.</p></div></div><div class="card"><h3>Catatan</h3><p>Angka monitoring pada V2 masih berupa data contoh. Pada versi backend, angka ini akan dihitung otomatis dari aktivitas sebenarnya.</p></div></div>
+</section>
+
+<!-- MODALS -->
+<div id="modal" class="modal" onclick="if(event.target===this)closeModal()"><div class="sheet"><div class="sheet-head"><h3 id="modalTitle">-</h3><button class="close" onclick="closeModal()">×</button></div><div id="modalBody"></div></div></div>
+<div id="toast" class="toast"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script><script>
+const SUPABASE_URL = "https://kylzsptnkafejeqbdezu.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_CIH1uuNdLZPzeqO5Y8pW1A_FSLmDlsO";
+const SCHOOL_ID = "f667459c-42c9-4354-8506-aa1809b1915e";
+
+const { createClient } = supabase;
+const db = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: false
+  }
+});
+
+let role = "teacher";
+let currentUser = null;
+let currentStudent = null;
+let teacherClasses = [];
+let students = [];
+let taskDone = false;
+
+function setRole(r){
+  role = r;
+  document.getElementById("teacherChoice").classList.toggle("active", r === "teacher");
+  document.getElementById("parentChoice").classList.toggle("active", r === "parent");
+  const codeField = document.getElementById("teacherCodeField");
+  const codeInput = document.getElementById("teacherCode");
+  const identityLabel = document.getElementById("identityLabel");
+
+  codeField.classList.remove("hidden");
+  codeInput.value = "";
+  document.getElementById("loginPin").value = "";
+
+  if (r === "teacher") {
+    identityLabel.textContent = "Kode Guru";
+    codeInput.placeholder = "Contoh: A";
+    codeInput.maxLength = 20;
+    document.getElementById("pinLabel").textContent = "PIN Guru";
+    document.getElementById("loginPin").placeholder = "Masukkan PIN Guru";
+    document.getElementById("loginHint").textContent = "Login guru diverifikasi oleh Supabase. PIN tidak disimpan di HTML.";
+  } else {
+    identityLabel.textContent = "Nomor Siswa";
+    codeInput.placeholder = "Contoh: 1A-1";
+    codeInput.maxLength = 30;
+    document.getElementById("pinLabel").textContent = "PIN Murid";
+    document.getElementById("loginPin").placeholder = "Masukkan PIN Murid";
+    document.getElementById("loginHint").textContent = "Login murid diverifikasi oleh Edge Function student-login. PIN tidak disimpan di HTML.";
+  }
+}
+
+async function login(){
+  const identity = (document.getElementById("teacherCode")?.value || "").trim();
+  const pin = (document.getElementById("loginPin")?.value || "").trim();
+  if (!identity) { toast(role === "teacher" ? "Masukkan Kode Guru." : "Masukkan Nomor Siswa."); return; }
+  if (!pin) { toast("Masukkan PIN terlebih dahulu."); return; }
+
+  const functionName = role === "teacher" ? "teacher-login" : "student-login";
+  const body = role === "teacher"
+    ? { teacher_code: identity.toUpperCase(), pin }
+    : { student_number: identity.toUpperCase(), pin };
+  const button = document.querySelector("#login .primary");
+  if (button) { button.disabled = true; button.textContent = "MEMERIKSA..."; }
+
+  try {
+    const { data, error } = await db.functions.invoke(functionName, { body });
+    if (error) {
+      let detail = error.message || "Edge Function gagal dipanggil.";
+      if (error.context) {
+        try {
+          const bodyText = await error.context.text();
+          if (bodyText) { const parsed = JSON.parse(bodyText); detail = parsed.error || parsed.message || detail; }
+        } catch (_) {}
+      }
+      throw new Error(detail);
+    }
+    if (!data?.success) throw new Error(data?.error || "Login gagal.");
+
+    const session = data.session || data.auth?.session ||
+      (data.auth?.access_token && data.auth?.refresh_token ? {
+        access_token: data.auth.access_token,
+        refresh_token: data.auth.refresh_token
+      } : null);
+    if (!session?.access_token || !session?.refresh_token) throw new Error("Login berhasil tetapi session Auth tidak dikembalikan.");
+
+    const { error: sessionError } = await db.auth.setSession(session);
+    if (sessionError) throw sessionError;
+
+    if (role === "teacher") {
+      const t = data.teacher || {};
+      currentUser = {
+        id: t.teacher_id || t.id || null,
+        teacher_id: t.teacher_id || t.id || null,
+        teacher_code: t.teacher_code || identity.toUpperCase(),
+        profile_id: t.profile_id || null,
+        full_name: t.full_name || "Guru",
+        role: t.role || "teacher"
+      };
+      show("teacherHome");
+      await loadTeacherDashboard();
+      toast("Selamat datang, " + currentUser.full_name);
+    } else {
+      const s = data.student || {};
+      currentStudent = {
+        id: s.student_id || s.id || null,
+        student_id: s.student_id || s.id || null,
+        student_number: s.student_number || identity.toUpperCase(),
+        full_name: s.full_name || "Murid",
+        name: s.full_name || "Murid",
+        class: s.class_name || s.class || s.class_code || "-",
+        class_name: s.class_name || s.class || s.class_code || "-"
+      };
+      setupParent();
+      show("parentHome");
+      toast("Selamat datang, " + currentStudent.full_name);
+    }
+  } catch (err) {
+    console.error("Login:", err);
+    toast(err?.message || "Login gagal.");
+  } finally {
+    if (button) { button.disabled = false; button.textContent = "MASUK"; }
+  }
+}
+
+async function loadTeacherDashboard(){
+  const list = document.getElementById("studentList");
+  if (list) list.innerHTML = `<div class="card"><p>Memuat kelas dan siswa dari database...</p></div>`;
+
+  const { data, error } = await db.functions.invoke("teacher-dashboard", { body: {} });
+  if (error) {
+    let detail = error.message || "Dashboard guru gagal dimuat.";
+    if (error.context) {
+      try { const txt = await error.context.text(); if (txt) { const parsed = JSON.parse(txt); detail = parsed.error || parsed.message || detail; } } catch (_) {}
+    }
+    throw new Error(detail);
+  }
+  if (!data?.success) throw new Error(data?.error || "Dashboard guru gagal dimuat.");
+
+  teacherClasses = Array.isArray(data.classes) ? data.classes : [];
+  students = teacherClasses.flatMap(c => (c.students || []).map(s => ({
+    ...s,
+    class_id: c.id,
+    class: c.name
+  })));
+
+  currentUser = { ...currentUser, ...(data.teacher || {}) };
+  setupTeacher(data.student_count ?? students.length);
+  showTeacherDataStatus();
+}
+
+function showTeacherDataStatus(){
+  const classCount = teacherClasses.length;
+  const studentCount = students.length;
+  const teacherName = currentUser?.full_name || "Guru";
+  const teacherCode = currentUser?.teacher_code || "-";
+  const message = classCount === 0
+    ? `<div class="card" style="border:1px solid #E7B8B8;background:#FFF8F8">
+         <div class="card-head"><span class="tag red">Data Kelas</span><span class="tag red">0 Kelas</span></div>
+         <h3>Belum ada kelas yang diterima dari database</h3>
+         <p>Login guru berhasil, tetapi Edge Function <b>teacher-dashboard</b> mengembalikan 0 kelas untuk guru <b>${esc(teacherName)}</b> (kode ${esc(teacherCode)}). Jadi dropdown sengaja tidak diisi dengan data dummy.</p>
+         <p style="margin-top:8px">Ini berarti tahap berikutnya adalah memeriksa penugasan pada tabel <b>teacher_classes</b>.</p>
+       </div>`
+    : `<div class="card" style="border:1px solid #CFE5D8;background:#F8FFFA">
+         <div class="card-head"><span class="tag green">Database Terhubung</span><span class="tag green">${classCount} Kelas · ${studentCount} Siswa</span></div>
+         <h3>Data kelas dan siswa berhasil dimuat</h3>
+         <p>Guru <b>${esc(teacherName)}</b> menerima ${classCount} kelas dan ${studentCount} siswa dari database.</p>
+       </div>`;
+  const home = document.getElementById("teacherDataStatus");
+  const list = document.getElementById("teacherDataStatusStudents");
+  if (home) home.innerHTML = message;
+  if (list) list.innerHTML = message;
+}
+
+function setupParent(){
+  const s = currentStudent;
+  const initialsText = initials(s.full_name || s.name || "M");
+  setText("pName", s.full_name || s.name);
+  setText("pClass", s.class || "-");
+  setText("pAvatar", initialsText);
+  setText("profileName", s.full_name || s.name);
+  setText("profileClass", s.class || "-");
+  setText("profileClass2", s.class || "-");
+  setText("profileAvatar", initialsText);
+  setText("profileId", s.student_number || s.id || "-");
+  setText("profileTeacher", "Wali Kelas");
+  setText("pDate", new Intl.DateTimeFormat("id-ID", {weekday:"long", day:"numeric", month:"long", year:"numeric"}).format(new Date()));
+  loadParentNotes();
+}
+
+function setupTeacher(studentCount){
+  const t = currentUser || {};
+  const code = String(t.teacher_code || "").toUpperCase();
+  setText("tName", t.full_name || "Guru");
+  setText("tAvatar", initials((t.full_name || "Guru").replace(/,.*/, "")));
+  setText("tRole", teacherClasses.length ? `${teacherClasses.length} Kelas` : "Guru");
+  setText("tScope", teacherClasses.length ? teacherClasses.map(c => c.name).join(" · ") : "Belum ada kelas yang ditugaskan");
+  setText("tAccessText", "Hak akses aktif. Data kelas dan siswa diambil langsung dari database sesuai penugasan guru.");
+  setText("tStudentCount", String(studentCount ?? students.length));
+
+  const sel = document.getElementById("teacherClassFilter");
+  if (sel) {
+    sel.innerHTML = "";
+    if (!teacherClasses.length) {
+      const o = document.createElement("option");
+      o.value = "";
+      o.textContent = "Belum ada kelas";
+      sel.appendChild(o);
+    }
+    teacherClasses.forEach((c, i) => {
+      const o = document.createElement("option");
+      o.value = c.id;
+      o.textContent = c.name;
+      if (i === 0) o.selected = true;
+      sel.appendChild(o);
+    });
+  }
+  renderStudents();
+}
+
+function renderStudents(){
+  const list = document.getElementById("studentList");
+  if (!list) return;
+  const classId = document.getElementById("teacherClassFilter")?.value || "";
+  const q = (document.getElementById("studentSearch")?.value || "").trim().toLowerCase();
+  const rows = students.filter(s => (!classId || s.class_id === classId) && (!q || `${s.full_name} ${s.student_number || ""}`.toLowerCase().includes(q)));
+
+  if (!rows.length) {
+    list.innerHTML = `<div class="card"><p>Tidak ada siswa yang cocok.</p></div>`;
+    return;
+  }
+
+  list.innerHTML = rows.map(s => `
+    <div class="student-row">
+      <div class="mini">${esc(initials(s.full_name))}</div>
+      <div>
+        <strong>${esc(s.full_name)}</strong>
+        <small>${esc(s.class)} · Nomor: ${esc(s.student_number || "-")}</small>
+      </div>
+      <button onclick="newNoteFor('${escAttr(s.id)}')">CATAT</button>
+    </div>`).join("");
+}
+
+function newNoteFor(id){
+  const s = students.find(x => x.id === id);
+  if (!s) { toast("Data siswa tidak ditemukan."); return; }
+  openModal("newNote", s);
+}
+
+async function loadParentNotes(){
+  const el=document.getElementById("parentNotesContent");
+  if(!el) return;
+  el.innerHTML='<div class="card"><p>Memuat catatan guru dari database...</p></div>';
+  try{
+    const {data,error}=await db.rpc("get_student_notes");
+    if(error) throw error;
+    if(!data?.length){
+      el.innerHTML='<div class="card"><div class="card-head"><span class="tag">Catatan Guru</span></div><h3>Belum ada catatan</h3><p>Belum ada catatan guru untuk Ananda.</p></div>';
+      return;
+    }
+    el.innerHTML=data.map(n=>{
+      const dt=new Date(n.created_at).toLocaleDateString("id-ID",{day:"2-digit",month:"long",year:"numeric"});
+      const status=n.parent_response?'<span class="tag green">Sudah ditanggapi</span>':(n.status==='read'?'<span class="tag gold">Menunggu tanggapan</span>':'<span class="tag red">Baru</span>');
+      const reply=n.parent_response
+        ? `<div class="reply"><strong>💬 Tanggapan Anda</strong><p>${esc(n.parent_response)}</p><div class="meta"><span>${n.parent_responded_at?new Date(n.parent_responded_at).toLocaleDateString("id-ID",{day:"2-digit",month:"long",year:"numeric"}):""}</span></div></div>`
+        : `<div class="reply"><strong>💬 Berikan Tanggapan</strong><button class="secondary" type="button" onclick="showReplyForm('${escAttr(n.id)}')">TANGGAPI CATATAN</button><div id="replyForm-${escAttr(n.id)}" class="hidden" style="margin-top:9px"><textarea id="replyText-${escAttr(n.id)}" maxlength="2000" placeholder="Tulis tanggapan untuk guru..."></textarea><button class="primary" type="button" onclick="sendReply('${escAttr(n.id)}')">KIRIM TANGGAPAN</button></div></div>`;
+      return `<div class="card"><div class="card-head"><span class="tag">${esc(n.category||"Umum")}</span>${status}</div><h3>${esc(n.title||"Catatan Guru")}</h3><p>${esc(n.content||"")}</p><div class="meta"><span>👩‍🏫 Guru</span><span>${dt}</span></div>${reply}</div>`;
+    }).join("");
+  }catch(err){
+    console.error("loadParentNotes:",err);
+    el.innerHTML=`<div class="card"><p>Catatan belum dapat dimuat. ${esc(err?.message||"")}</p></div>`;
+  }
+}
+
+function showReplyForm(noteId){
+  const form=document.getElementById(`replyForm-${noteId}`);
+  if(form){form.classList.remove("hidden"); const ta=form.querySelector("textarea"); if(ta) ta.focus();}
+}
+
+async function sendReply(noteId){
+  const ta=document.getElementById(`replyText-${noteId}`);
+  const text=ta?.value.trim()||"";
+  if(!text){toast("Tulis tanggapan terlebih dahulu.");return;}
+  const form=ta?.parentElement;
+  const btn=form?.querySelector("button.primary");
+  if(btn){btn.disabled=true;btn.textContent="MENGIRIM...";}
+  try{
+    const {error}=await db.rpc("respond_to_student_note",{p_note_id:noteId,p_response:text});
+    if(error) throw error;
+    toast("Tanggapan berhasil dikirim kepada guru.");
+    await loadParentNotes();
+  }catch(err){
+    console.error("sendReply:",err);
+    toast(err?.message||"Tanggapan gagal dikirim.");
+    if(btn){btn.disabled=false;btn.textContent="KIRIM TANGGAPAN";}
+  }
+}
+
+
+async function setupAttendance(){
+  const sel=document.getElementById("attendanceClass"), date=document.getElementById("attendanceDate");
+  if(!sel||!date)return;
+  sel.innerHTML=teacherClasses.map(c=>`<option value="${escAttr(c.id)}">${esc(c.name)}</option>`).join("");
+  const rc=document.getElementById("recapClass"); if(rc)rc.innerHTML=teacherClasses.map(c=>`<option value="${escAttr(c.id)}">${esc(c.name)}</option>`).join("");
+  if(!date.value)date.value=new Date().toISOString().slice(0,10);
+  toggleAttendanceMode();
+  await loadAttendanceForDate();
+}
+
+function toggleAttendanceMode(){
+  const mode=document.getElementById('attendanceMode')?.value||'input';
+  document.getElementById('attendanceInputPanel')?.classList.toggle('hidden',mode!=='input');
+  document.getElementById('attendanceInputSummary')?.classList.toggle('hidden',mode!=='input');
+  document.getElementById('attendanceInputClassWrap')?.classList.toggle('hidden',mode!=='input');
+  document.getElementById('attendanceInputDateWrap')?.classList.toggle('hidden',mode!=='input');
+  document.getElementById('attendanceRecapPanel')?.classList.toggle('hidden',mode!=='recap');
+  if(mode==='recap')initRecapDates();
+}
+
+async function loadAttendanceForDate(){
+  const sel=document.getElementById("attendanceClass"), date=document.getElementById("attendanceDate"), list=document.getElementById("attendanceList");
+  if(!sel||!date||!list)return;
+  const classId=sel.value, attendanceDate=date.value, cls=teacherClasses.find(c=>c.id===classId);
+  if(!classId||!attendanceDate||!cls){list.innerHTML='<div class="card"><p>Pilih kelas dan tanggal.</p></div>';return;}
+  list.innerHTML='<div class="card"><p>Memuat daftar kehadiran...</p></div>';
+  try{
+    const {data,error}=await db.rpc("get_class_attendance",{p_class_id:classId,p_attendance_date:attendanceDate}); if(error)throw error;
+    const existing=new Map((data||[]).map(x=>[x.student_id,x])), rows=students.filter(s=>s.class_id===classId);
+    if(!rows.length){list.innerHTML='<div class="card"><p>Tidak ada siswa pada kelas ini.</p></div>';return;}
+    list.innerHTML=rows.map(s=>{const a=existing.get(s.id),st=a?.status||'present';return `<div class="student-row attendance-row" data-student-id="${escAttr(s.id)}" data-status="${st}" style="align-items:flex-start"><div class="mini">${esc(initials(s.full_name))}</div><div style="min-width:0;flex:1"><strong>${esc(s.full_name)}</strong><small>${esc(s.student_number||'-')}</small><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:8px">${[['present','Hadir'],['sick','Sakit'],['excused','Izin'],['absent','Alpa']].map(([v,l])=>`<button type="button" class="attendance-choice ${st===v?'primary':''}" data-status="${v}" onclick="setAttendanceStatus(this,'${escAttr(s.id)}','${v}')" style="padding:7px 3px;border-radius:9px;font-size:8px;border:1px solid var(--line);background:${st===v?'var(--navy)':'#fff'};color:${st===v?'#fff':'var(--ink)'}">${l}</button>`).join('')}</div><input class="attendance-note" data-student-id="${escAttr(s.id)}" value="${escAttr(a?.note||'')}" placeholder="Keterangan (opsional)" style="width:100%;margin-top:7px;border:1px solid var(--line);border-radius:9px;padding:7px;font-size:9px"></div></div>`}).join('');
+    updateAttendanceSummary();
+  }catch(err){console.error('loadAttendanceForDate:',err);list.innerHTML=`<div class="card"><p>Kehadiran belum dapat dimuat. ${esc(err?.message||'')}</p></div>`;}
+}
+function setAttendanceStatus(btn,studentId,status){const row=document.querySelector(`.attendance-row[data-student-id="${CSS.escape(studentId)}"]`);if(!row)return;row.querySelectorAll('.attendance-choice').forEach(b=>{const active=b.dataset.status===status;b.style.background=active?'var(--navy)':'#fff';b.style.color=active?'#fff':'var(--ink)';b.classList.toggle('primary',active)});row.dataset.status=status;updateAttendanceSummary();}
+function updateAttendanceSummary(){const rows=[...document.querySelectorAll('.attendance-row')],counts={present:0,sick:0,excused:0,absent:0};rows.forEach(r=>counts[r.dataset.status||'present']++);const e=document.getElementById('attendanceSummary');if(e)e.textContent=`${counts.present} Hadir · ${counts.sick} Sakit · ${counts.excused} Izin · ${counts.absent} Alpa`;}
+async function saveAttendance(){const classId=document.getElementById('attendanceClass')?.value||'',date=document.getElementById('attendanceDate')?.value||'',rows=[...document.querySelectorAll('.attendance-row')];if(!classId||!date||!rows.length){toast('Pilih kelas, tanggal, dan pastikan ada siswa.');return;}const records=rows.map(r=>({student_id:r.dataset.studentId,status:r.dataset.status||'present',note:r.querySelector('.attendance-note')?.value.trim()||null}));const btn=document.getElementById('saveAttendanceBtn');if(btn){btn.disabled=true;btn.textContent='MENYIMPAN...';}try{const {data,error}=await db.rpc('save_class_attendance',{p_class_id:classId,p_attendance_date:date,p_records:records});if(error)throw error;toast(`${data||records.length} data kehadiran berhasil disimpan.`);await loadAttendanceForDate();}catch(err){console.error('saveAttendance:',err);toast(err?.message||'Kehadiran gagal disimpan.');}finally{if(btn){btn.disabled=false;btn.textContent='SIMPAN KEHADIRAN';}}}
+
+function initRecapDates(){
+  const now=new Date(), y=now.getFullYear(),m=now.getMonth(), start=document.getElementById('recapStart'),end=document.getElementById('recapEnd');
+  if(!start?.value)start.value=new Date(y,m,1).toISOString().slice(0,10);
+  if(!end?.value)end.value=new Date(y,m+1,0).toISOString().slice(0,10);
+  applyRecapPeriod();
+}
+function applyRecapPeriod(){
+  const period=document.getElementById('recapPeriod')?.value||'month', now=new Date(), y=now.getFullYear(),m=now.getMonth(), ayStart=m>=6?y:y-1;
+  const start=document.getElementById('recapStart'),end=document.getElementById('recapEnd'),custom=document.getElementById('recapCustomDates'); if(!start||!end)return;
+  let a,b;
+  if(period==='month'){a=new Date(y,m,1);b=new Date(y,m+1,0);}
+  else if(period==='semester1'){a=new Date(ayStart,6,1);b=new Date(ayStart,11,31);}
+  else if(period==='semester2'){a=new Date(ayStart+1,0,1);b=new Date(ayStart+1,5,30);}
+  else if(period==='year'){a=new Date(ayStart,6,1);b=new Date(ayStart+1,5,30);}
+  else {custom.style.display='flex';setRecapLabel(start.value,end.value);return;}
+  custom.style.display='none';start.value=a.toISOString().slice(0,10);end.value=b.toISOString().slice(0,10);setRecapLabel(start.value,end.value);
+}
+function setRecapLabel(a,b){const el=document.getElementById('recapPeriodLabel');if(el)el.textContent=a&&b?`${formatDateID(a)} — ${formatDateID(b)}`:'Pilih rentang tanggal';}
+function formatDateID(v){return new Date(v+'T00:00:00').toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'});}
+async function loadAttendanceRecap(){
+  const classId=document.getElementById('recapClass')?.value,start=document.getElementById('recapStart')?.value,end=document.getElementById('recapEnd')?.value;
+  if(!classId||!start||!end){toast('Pilih kelas dan periode.');return;} if(start>end){toast('Tanggal mulai tidak boleh setelah tanggal akhir.');return;}
+  setRecapLabel(start,end);const body=document.getElementById('recapBody'),daily=document.getElementById('dailyBody');body.innerHTML='<tr><td colspan="7">Memuat rekap...</td></tr>';daily.innerHTML='<tr><td colspan="5">Memuat rincian harian...</td></tr>';
+  try{
+    const [r,d]=await Promise.all([db.rpc('get_attendance_recap',{p_class_id:classId,p_start_date:start,p_end_date:end}),db.rpc('get_attendance_daily',{p_class_id:classId,p_start_date:start,p_end_date:end})]);
+    if(r.error)throw r.error;if(d.error)throw d.error;const rows=r.data||[],days=d.data||[];
+    body.innerHTML=rows.length?rows.map((x,i)=>`<tr><td>${i+1}</td><td><strong>${esc(x.full_name)}</strong><br><small>${esc(x.student_number||'-')}</small></td><td>${x.present_count||0}</td><td>${x.sick_count||0}</td><td>${x.excused_count||0}</td><td>${x.absent_count||0}</td><td><strong>${x.total_days||0}</strong></td></tr>`).join(''):'<tr><td colspan="7">Belum ada data kehadiran pada periode ini.</td></tr>';
+    daily.innerHTML=days.length?days.map((x,i)=>`<tr><td>${i+1}</td><td>${formatDateID(x.attendance_date)}</td><td>${esc(x.full_name)}</td><td>${statusLabel(x.status)}</td><td>${esc(x.note||'')}</td></tr>`).join(''):'<tr><td colspan="5">Belum ada rincian harian.</td></tr>';
+    document.getElementById('recapCount').textContent=`${rows.length} siswa`;document.getElementById('dailyCount').textContent=`${days.length} catatan`;
+    const totals=rows.reduce((a,x)=>{a.present+=Number(x.present_count||0);a.sick+=Number(x.sick_count||0);a.excused+=Number(x.excused_count||0);a.absent+=Number(x.absent_count||0);return a},{present:0,sick:0,excused:0,absent:0});
+    document.getElementById('recapSummary').innerHTML=[['Hadir',totals.present],['Sakit',totals.sick],['Izin',totals.excused],['Alpa',totals.absent]].map(x=>`<div class="stat"><small>${x[0]}</small><strong>${x[1]}</strong></div>`).join('');
+    window._attendanceRecap={rows,days,className:teacherClasses.find(c=>c.id===classId)?.name||'',start,end};
+  }catch(err){console.error('loadAttendanceRecap:',err);body.innerHTML=`<tr><td colspan="7">Gagal memuat rekap: ${esc(err?.message||'')}</td></tr>`;daily.innerHTML='<tr><td colspan="5">-</td></tr>';}
+}
+function statusLabel(s){return ({present:'Hadir',sick:'Sakit',excused:'Izin',absent:'Alpa'})[s]||s||'-';}
+function printAttendanceRecap(){if(!window._attendanceRecap){toast('Tampilkan rekap terlebih dahulu.');return;}window.print();}
+function downloadAttendanceExcel(){const r=window._attendanceRecap;if(!r){toast('Tampilkan rekap terlebih dahulu.');return;}if(typeof XLSX==='undefined'){toast('Fitur Excel belum tersedia.');return;}const recap=r.rows.map((x,i)=>({'No':i+1,'No. Induk':x.student_number||'','Nama Siswa':x.full_name,'Hadir':Number(x.present_count||0),'Sakit':Number(x.sick_count||0),'Izin':Number(x.excused_count||0),'Alpa':Number(x.absent_count||0),'Total':Number(x.total_days||0)}));const daily=r.days.map((x,i)=>({'No':i+1,'Tanggal':x.attendance_date,'Nama Siswa':x.full_name,'Status':statusLabel(x.status),'Keterangan':x.note||''}));const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(recap),'Rekap Siswa');XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(daily),'Rincian Harian');XLSX.writeFile(wb,`Rekap Kehadiran ${r.className} ${r.start}_${r.end}.xlsx`);}
+
+async function loadParentAttendance(){
+  const el=document.getElementById('parentAttendanceContent');if(!el)return;el.innerHTML='<div class="card"><p>Memuat kehadiran dari database...</p></div>';
+  try{const {data,error}=await db.rpc('get_student_attendance');if(error)throw error;const rows=data||[];if(!rows.length){el.innerHTML='<div class="card"><h3>Belum ada data kehadiran</h3><p>Data akan muncul setelah guru mencatat kehadiran.</p></div>';return;}
+    const counts={present:0,sick:0,excused:0,absent:0};rows.forEach(r=>counts[r.status]=(counts[r.status]||0)+1);
+    const label={present:'Hadir',sick:'Sakit',excused:'Izin',absent:'Alpa'};const icon={present:'✓',sick:'S',excused:'I',absent:'A'};
+    el.innerHTML=`<div class="card"><div class="section" style="margin-top:0"><h3>Rekap Kehadiran</h3><span>${rows.length} hari tercatat</span></div><div class="teacher-stat">${Object.keys(label).map(k=>`<div class="stat"><small>${label[k]}</small><strong>${counts[k]||0}</strong></div>`).join('')}</div></div><div class="card"><h3>Riwayat Kehadiran</h3>${rows.map(r=>`<div class="notice-item"><strong>${icon[r.status]||''} ${new Date(r.attendance_date+'T00:00:00').toLocaleDateString('id-ID',{weekday:'short',day:'2-digit',month:'long',year:'numeric'})} — ${label[r.status]||r.status}</strong>${r.note?`<p>${esc(r.note)}</p>`:''}<p>${esc(r.class_name||'-')}</p></div>`).join('')}</div>`;
+  }catch(err){console.error('loadParentAttendance:',err);el.innerHTML=`<div class="card"><p>Kehadiran belum dapat dimuat. ${esc(err?.message||'')}</p></div>`;}
+}
+
+function confirmTask(){ taskDone=true; setText("taskStatus","Sudah dikonfirmasi sebagai tugas yang dikerjakan."); toast("Status tugas diperbarui sebagai simulasi."); }
+
+function openModal(type, student){
+  const m=document.getElementById("modal"), title=document.getElementById("modalTitle"), body=document.getElementById("modalBody");
+  let t="", b="";
+  if(type==="newNote"){
+    const s=student || students[0];
+    t="Buat Catatan Siswa";
+    b=`<div class="field"><label>Siswa</label><select id="noteStudent">${s ? `<option value="${escAttr(s.id)}">${esc(s.full_name)} · ${esc(s.class)} · ${esc(s.student_number || "-")}</option>` : ""}</select></div><div class="field"><label>Kategori</label><select id="noteCategory"><option>Akademik</option><option>Sikap</option><option>Kehadiran</option><option>Apresiasi</option><option>Perhatian</option></select></div><div class="field"><label>Catatan</label><textarea id="noteText" placeholder="Tulis catatan untuk siswa..."></textarea></div><button class="primary" onclick="saveNote()">TERBITKAN CATATAN</button>`;
+  } else if(type==="newTask"){
+    t="Buat Tugas";
+    b=`<div class="field"><label>Kelas</label><select id="taskClass">${teacherClasses.map(c=>`<option value="${escAttr(c.id)}">${esc(c.name)}</option>`).join("")}</select></div><div class="field"><label>Judul</label><input id="taskTitle" placeholder="Judul tugas"></div><div class="field"><label>Deskripsi</label><textarea id="taskText" placeholder="Instruksi tugas..."></textarea></div><button class="primary" onclick="saveTask()">TERBITKAN TUGAS</button>`;
+  } else if(type==="newAnnouncement"){
+    t="Buat Pengumuman";
+    b=`<div class="field"><label>Kelas</label><select id="annClass">${teacherClasses.map(c=>`<option value="${escAttr(c.id)}">${esc(c.name)}</option>`).join("")}</select></div><div class="field"><label>Judul</label><input id="annTitle" placeholder="Judul pengumuman"></div><div class="field"><label>Isi</label><textarea id="annText" placeholder="Tulis informasi..."></textarea></div><button class="primary" onclick="saveAnnouncement()">TERBITKAN PENGUMUMAN</button>`;
+  } else if(type==="notifications"){
+    t="Notifikasi"; b=`<div class="notice-item"><strong>📝 Catatan baru</strong><p>Notifikasi komunikasi akan terhubung ke database pada tahap berikutnya.</p></div>`;
+  } else {
+    t="Informasi Guru"; b=`<div class="card" style="margin:0"><strong>${esc(currentUser?.full_name||"Guru")}</strong><p style="margin-top:6px">Kode: ${esc(currentUser?.teacher_code||"")}</p></div>`;
+  }
+  title.textContent=t; body.innerHTML=b; m.classList.add("show");
+}
+
+async function saveNote(){
+  const studentId=document.getElementById("noteStudent")?.value || "";
+  const category=document.getElementById("noteCategory")?.value || "Umum";
+  const text=document.getElementById("noteText")?.value.trim() || "";
+  if(!studentId){toast("Pilih siswa terlebih dahulu.");return}
+  if(!text){toast("Catatan belum diisi.");return}
+
+  const s=students.find(x=>x.id===studentId);
+  if(!s || !s.class_id){toast("Kelas siswa tidak ditemukan.");return}
+
+  const btn=document.querySelector('#modalBody button[onclick="saveNote()"]');
+  if(btn){btn.disabled=true;btn.textContent="MENYIMPAN...";}
+
+  try{
+    const {data,error}=await db.rpc("create_student_note",{
+      p_student_id:studentId,
+      p_class_id:s.class_id,
+      p_title:`Catatan ${category}`,
+      p_content:text,
+      p_category:category
+    });
+    if(error) throw error;
+    closeModal();
+    toast("Catatan berhasil disimpan ke database.");
+    await loadTeacherNotes();
+  }catch(err){
+    console.error("saveNote:",err);
+    toast(err?.message || "Catatan gagal disimpan.");
+  }finally{
+    if(btn){btn.disabled=false;btn.textContent="TERBITKAN CATATAN";}
+  }
+}
+
+async function loadTeacherNotes(){
+  const el=document.getElementById("teacherNoteList");
+  if(!el) return;
+  el.innerHTML='<div class="card"><p>Memuat catatan dari database...</p></div>';
+  try{
+    const {data,error}=await db.from("student_notes")
+      .select("id,student_id,class_id,title,content,category,status,created_at,parent_response,read_at")
+      .order("created_at",{ascending:false});
+    if(error) throw error;
+    if(!data?.length){
+      el.innerHTML='<div class="card"><p>Belum ada catatan tersimpan.</p></div>';
+      return;
+    }
+    el.innerHTML=data.map(n=>{
+      const st=students.find(x=>x.id===n.student_id);
+      const name=st?.full_name || "Siswa";
+      const cls=st?.class || "-";
+      const dt=new Date(n.created_at).toLocaleDateString("id-ID",{day:"2-digit",month:"short",year:"numeric"});
+      const responseHtml=n.parent_response ? `<div class="reply"><strong>💬 Tanggapan Murid/Orang Tua</strong><p>${esc(n.parent_response)}</p><div class="meta"><span>${n.parent_responded_at?new Date(n.parent_responded_at).toLocaleDateString("id-ID",{day:"2-digit",month:"long",year:"numeric"}):""}</span></div></div>` : "";
+      return `<div class="card"><div class="card-head"><span class="tag">${esc(n.category)}</span><span class="tag ${n.parent_response?"green":"gold"}">${n.parent_response?"Sudah ditanggapi":"Menunggu tanggapan"}</span></div><h3>${esc(n.title)}</h3><p>${esc(n.content)}</p><div class="meta"><span>${esc(name)} · ${esc(cls)}</span><span>${dt}</span></div>${responseHtml}</div>`;
+    }).join("");
+  }catch(err){
+    console.error("loadTeacherNotes:",err);
+    el.innerHTML='<div class="card"><p>Catatan belum dapat dimuat.</p></div>';
+  }
+}
+function saveTask(){
+  const title=document.getElementById("taskTitle")?.value.trim(), text=document.getElementById("taskText")?.value.trim();
+  if(!title||!text){toast("Judul dan deskripsi wajib diisi.");return}
+  closeModal();toast("Tugas siap disimpan pada tahap database berikutnya.");
+}
+function saveAnnouncement(){
+  const title=document.getElementById("annTitle")?.value.trim(), text=document.getElementById("annText")?.value.trim();
+  if(!title||!text){toast("Judul dan isi wajib diisi.");return}
+  closeModal();toast("Pengumuman siap disimpan pada tahap database berikutnya.");
+}
+
+async function logout(){
+  try { await db.auth.signOut(); } catch(e) { console.error("Logout:",e); }
+  currentUser=null; currentStudent=null; teacherClasses=[]; students=[];
+  document.getElementById("teacherCode").value=""; document.getElementById("loginPin").value="";
+  setRole("teacher"); show("login");
+}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+function show(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));const e=document.getElementById(id);if(e)e.classList.add("active");window.scrollTo(0,0);if(id==="teacherNotes")loadTeacherNotes();if(id==="parentNotes")loadParentNotes();if(id==="teacherAttendance")setupAttendance();if(id==="parentAttendance")loadParentAttendance()}
+function toast(msg){const e=document.getElementById("toast");e.textContent=msg;e.classList.add("show");clearTimeout(window._tt);window._tt=setTimeout(()=>e.classList.remove("show"),3000)}
+function setText(id,v){const e=document.getElementById(id);if(e)e.textContent=v}
+function initials(n){return String(n||"").split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join("").toUpperCase()}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function escAttr(s){return esc(s).replace(/"/g,"&quot;")}
+
+db.auth.onAuthStateChange((event)=>{
+  if(event==="SIGNED_OUT"){
+    currentUser=null; currentStudent=null; teacherClasses=[]; students=[];
+  }
+});
+
+setRole("teacher");
+</script>
+</body>
+</html>
